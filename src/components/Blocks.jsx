@@ -51,8 +51,8 @@ function Blocks() {
                 ))
               ) : (
                 <Tr>
-                  <Td ><p className="spinner"></p></Td>
-                  <Td></Td>
+                  <Td ></Td>
+                  <Td><p className="spinner"></p></Td>
                   <Td></Td>
                 </Tr>
               )}

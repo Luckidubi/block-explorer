@@ -2,7 +2,7 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
+
   Tr,
   Th,
   Td,
@@ -46,7 +46,7 @@ function BlocksPage() {
                     </Td>
 
                     <Td isNumeric>{timeAgo(item.timestamp)}</Td>
-                    <Td isNumeric>{item.transactions.length}</Td>
+                    <Td isNumeric><Link to={`/txns/block/${item.number}`}>{item.transactions.length}</Link></Td>
                     <Td isNumeric> {shortenAddress(item.miner)}</Td>
                     <Td isNumeric>{formatEther(item.gasUsed._hex)} Eth</Td>
                     <Td isNumeric>{formatEther(item.gasLimit._hex)} Eth</Td>
@@ -57,19 +57,13 @@ function BlocksPage() {
                 ))
               ) : (
                 <Tr>
-                  <Td>Loading...</Td>
                   <Td></Td>
+                  <Td><p className="spinner"></p></Td>
                   <Td></Td>
                 </Tr>
               )}
             </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th></Th>
-                <Th></Th>
-                <Th isNumeric></Th>
-              </Tr>
-            </Tfoot>
+
           </Table>
         </TableContainer>
       </Box>

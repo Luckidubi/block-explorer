@@ -7,7 +7,7 @@ import { Alchemy, Network, Utils } from "alchemy-sdk";
 // keys in client-side code. You should never do this in production
 // level code.
 const settings = {
-  apiKey: "oY9MpajdXpMs5xbauzCOIbL2cVmxSXgU",
+  apiKey: import.meta.env.VITE_ALCHEMY_API_KEY,
   network: Network.ETH_MAINNET,
 };
 

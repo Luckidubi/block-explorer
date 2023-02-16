@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -14,9 +15,9 @@ function Navbar() {
         alignItems="center"
         mb="2rem"
       >
-        <p> Home </p>
+        <p><Link to="/">Home </Link> </p>
 
-        <p>Account</p>
+        <p><Link to="/account">Account</Link></p>
       </Box>
     </>
   );
