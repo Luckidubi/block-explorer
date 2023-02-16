@@ -1,3 +1,8 @@
+html a {
+  color: #3b82f6;
+  text-decoration: #3b82f6;
+
+}
 .property-list {
   /* Content is center horizontally */
   align-items: flex-start;
@@ -15,7 +20,6 @@
   flex: 1;
 }
 .property-list__value {
-
   flex: 1;
 }
 
