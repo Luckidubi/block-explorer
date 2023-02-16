@@ -7,9 +7,10 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
+
   TableContainer,
   Box,
+
 } from "@chakra-ui/react";
 import { shortenAddress, timeAgo } from "../utils/index";
 import { useBlock } from "../context/BlockContext";
@@ -21,6 +22,7 @@ function Blocks() {
 
   return (
     <>
+
       <Box boxShadow="xl">
         <TableContainer>
           <Table size={{ sm: "sm", md: "md", xl: "md" }} variant="simple">
@@ -41,7 +43,7 @@ function Blocks() {
                     <Td>
                       Miner: {shortenAddress(item.miner)}
                       <br />
-                      {item.transactions.length} transactions
+                      <Link to={`/txns/block/${item.number}`}>{item.transactions.length}</Link> transactions
                       <br />
                     </Td>
                     <Td isNumeric>{timeAgo(item.timestamp)}</Td>
@@ -49,7 +51,7 @@ function Blocks() {
                 ))
               ) : (
                 <Tr>
-                  <Td>Loading...</Td>
+                  <Td ><p className="spinner"></p></Td>
                   <Td></Td>
                   <Td></Td>
                 </Tr>
@@ -58,7 +60,7 @@ function Blocks() {
             <Tfoot>
               <Tr>
                 <Th></Th>
-                <Th>More blocks</Th>
+                <Th><Link to="/blocks">More Details</Link></Th>
                 <Th isNumeric></Th>
               </Tr>
             </Tfoot>
