@@ -14,19 +14,19 @@ import {
 } from "@chakra-ui/react";
 import { formatEther, shortenAddress } from "../utils/index";
 import { useBlock } from "../context/BlockContext";
+import { Link } from "react-router-dom";
 
 function Transactions() {
- const {txns} = useBlock()
+  const { txns, loading } = useBlock();
 
   return (
     <>
       <Box boxShadow="xl">
-        <TableContainer >
+        <TableContainer>
           <Table
             overflowX="hidden"
             size={{ sm: "sm", md: "md", xl: "md" }}
             variant="simple"
-
           >
             <Thead>
               <Tr>
@@ -36,21 +36,36 @@ function Transactions() {
               </Tr>
             </Thead>
             <Tbody>
-              {txns?.map((txn, index) => (
-                <Tr key={index}>
-                  <Td>{txn.hash.slice(0, 14)}...</Td>
+              {!loading ? (
+                txns?.map((txn, index) => (
+                  <Tr key={index}>
+                    <Td><Link to={`/txns/${txn.hash}`}>{txn.hash.slice(0, 14)}...</Link></Td>
+                    <Td>
+                      from: {shortenAddress(txn.from)}
+                      <br />
+                      to: {shortenAddress(txn.to)}
+                    </Td>
+                    <Td isNumeric>
+                      <Badge
+                        borderRadius={3}
+                        color="black"
+                        title="Amount"
+                        variant="outline"
+                      >
+                        {formatEther(txn.value._hex)} Eth
+                      </Badge>
+                    </Td>
+                  </Tr>
+                ))
+              ) : (
+                <Tr>
                   <Td>
-                    from: {shortenAddress(txn.from)}
-                    <br />
-                    to: {shortenAddress(txn.to)}
+                    <p className="spinner"></p>
                   </Td>
-                  <Td isNumeric>
-                    <Badge borderRadius={3} color="black" title="Amount" variant="outline">
-                      {formatEther(txn.value._hex)} Eth
-                    </Badge>
-                  </Td>
+                  <Td></Td>
+                  <Td></Td>
                 </Tr>
-              ))}
+              )}
             </Tbody>
             <Tfoot>
               <Tr>
