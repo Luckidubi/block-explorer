@@ -39,7 +39,11 @@ function Transactions() {
               {!loading ? (
                 txns?.map((txn, index) => (
                   <Tr key={index}>
-                    <Td><Link to={`/txns/${txn.hash}`}>{txn.hash.slice(0, 14)}...</Link></Td>
+                    <Td>
+                      <Link to={`/txns/${txn.hash}`}>
+                        {txn.hash.slice(0, 14)}...
+                      </Link>
+                    </Td>
                     <Td>
                       from: {shortenAddress(txn.from)}
                       <br />
@@ -59,10 +63,10 @@ function Transactions() {
                 ))
               ) : (
                 <Tr>
+                  <Td></Td>
                   <Td>
                     <p className="spinner"></p>
                   </Td>
-                  <Td></Td>
                   <Td></Td>
                 </Tr>
               )}
@@ -70,7 +74,7 @@ function Transactions() {
             <Tfoot>
               <Tr>
                 <Th></Th>
-                <Th>More transactions</Th>
+                <Th> </Th>
                 <Th isNumeric></Th>
               </Tr>
             </Tfoot>
